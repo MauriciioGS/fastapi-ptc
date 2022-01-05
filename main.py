@@ -269,7 +269,7 @@ def create_an_taller(taller:Taller):
 @app.put('/taller/{taller_id}', response_model=Taller,
         status_code=status.HTTP_200_OK)
 def update_an_taller(taller_id:int,taller:Taller):
-    taller_to_update = db.query(models.Curso).filter(models.Curso.id == curso_id).first()
+    taller_to_update = db.query(models.Taller).filter(models.Taller.id == taller_id).first()
     taller_to_update.title = taller.title
     taller_to_update.description = taller.description
     taller_to_update.date = taller.date
