@@ -226,7 +226,7 @@ class Taller(BaseModel):
     title:str
     description:str
     date:str
-    link:str
+    liga:str
 
     class Config:
         orm_mode=True
