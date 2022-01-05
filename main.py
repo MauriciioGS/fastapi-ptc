@@ -1,4 +1,3 @@
-from sqlalchemy.sql.sqltypes import Date
 from fastapi import FastAPI,status,HTTPException
 from pydantic import BaseModel
 from typing import List
@@ -155,7 +154,7 @@ class Curso(BaseModel):
     id:int
     title:str
     description:str
-    date:Date
+    date:str
     link:str
 
     class Config:
@@ -226,7 +225,7 @@ class Taller(BaseModel):
     id:int
     title:str
     description:str
-    date:Date
+    date:str
     link:str
 
     class Config:
