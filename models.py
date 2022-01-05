@@ -25,7 +25,7 @@ class Material(Base):
     return f"<Material title={self.title} description={self.description} conceptos={self.conceptos} manuales={self.manuales} videos={self.videos}>"
 
 class Curso(Base):
-  __tablename__='materials'
+  __tablename__='course'
   id = Column(Integer, primary_key=True)
   title = Column(Text, nullable=False)
   description = Column(Text, nullable=False)
@@ -36,7 +36,7 @@ class Curso(Base):
     return f"<Curso title={self.title} description={self.description} date={self.date} link={self.link}>"
 
 class Taller(Base):
-  __tablename__='materials'
+  __tablename__='taller'
   id = Column(Integer, primary_key=True)
   title = Column(Text, nullable=False)
   description = Column(Text, nullable=False)
