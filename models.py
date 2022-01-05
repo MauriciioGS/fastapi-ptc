@@ -1,4 +1,3 @@
-from sqlalchemy.sql.sqltypes import Date
 from database import Base
 from sqlalchemy import Text,Integer,Column
 
