@@ -258,7 +258,7 @@ def create_an_taller(taller:Taller):
             title=taller.title,
             description = taller.description,
             date = taller.date,
-            link = taller.liga
+            liga = taller.liga
             )
 
     db.add(new_taller)
@@ -273,7 +273,7 @@ def update_an_taller(taller_id:int,taller:Taller):
     taller_to_update.title = taller.title
     taller_to_update.description = taller.description
     taller_to_update.date = taller.date
-    taller_to_update.link = taller.liga
+    taller_to_update.liga = taller.liga
 
     db.commit()
 
