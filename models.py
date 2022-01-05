@@ -30,20 +30,20 @@ class Curso(Base):
   id = Column(Integer, primary_key=True)
   title = Column(Text, nullable=False)
   description = Column(Text, nullable=False)
-  date = Column(Date, nullable=False)
+  date = Column(Text, nullable=False)
   link = Column(Text, nullable=False)
 
   def __repr__(self):
-    return f"<Cursos title={self.title} description={self.description} date={self.date} link={self.link}>"
+    return f"<Curso title={self.title} description={self.description} date={self.date} link={self.link}>"
 
 class Taller(Base):
   __tablename__='materials'
   id = Column(Integer, primary_key=True)
   title = Column(Text, nullable=False)
   description = Column(Text, nullable=False)
-  date = Column(Date, nullable=False)
+  date = Column(Text, nullable=False)
   liga = Column(Text, nullable=False)
   
 
   def __repr__(self):
-    return f"<Talleres title={self.title} description={self.description} date={self.date} li:nk={self.link}>"
+    return f"<Taller title={self.title} description={self.description} date={self.date} link={self.link}>"
