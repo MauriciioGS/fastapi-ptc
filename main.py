@@ -238,21 +238,20 @@ def get_all_materials():
 
 @app.get('/material/{material_id}', response_model=Material,
         status_code=status.HTTP_200_OK)
-def get_an_material(material_id:int):
+def get_a_material(material_id:int):
     material = db.query(models.Material).filter(models.Material.id == material_id).first()
     return material
 
 @app.get('/material/name/{material_name}', response_model=Material,
         status_code=status.HTTP_200_OK)
-def get_an_material(material_name:str):
+def get_a_material_for_name(material_name:str):
     search = "%{}%".format(material_name)
     material = db.query(models.Material).filter(models.Material.title.like(search)).first()
-    print(material)
     return material
 
 @app.post('/materials',response_model=Material,
         status_code=status.HTTP_201_CREATED)
-def create_an_material(material:Material):
+def create_a_material(material:Material):
 
     db_item = db.query(models.Material).filter(models.Material.title == material.title).first()
     if db_item is not None:
@@ -271,7 +270,7 @@ def create_an_material(material:Material):
 
 @app.put('/material/{material_id}', response_model=Material,
         status_code=status.HTTP_200_OK)
-def update_an_material(material_id:int,material:Material):
+def update_a_material(material_id:int,material:Material):
     material_to_update = db.query(models.Material).filter(models.Material.id == material_id).first()
     material_to_update.title = material.title
     material_to_update.url = material.url
