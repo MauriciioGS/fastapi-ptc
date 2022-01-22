@@ -445,13 +445,19 @@ def get_all_topics():
 
 @app.get('/topic/{topic_id}', response_model=Topic,
         status_code=status.HTTP_200_OK)
-def get_an_topic(topic_id:int):
+def get_a_topic(topic_id:int):
     topic = db.query(models.Topic).filter(models.Topic.id == topic_id).first()
     return topic
 
+@app.get('/topics/{material_id}', response_model=List[Topic],
+        status_code=status.HTTP_200_OK)
+def get_a_topic_for_id_material(material_id:int):
+    topics = db.query(models.Topic).filter(models.Topic.id_material == material_id).all()
+    return topics
+
 @app.post('/topics',response_model=Topic,
         status_code=status.HTTP_201_CREATED)
-def create_an_topic(topic:Topic):
+def create_a_topic(topic:Topic):
 
     db_item = db.query(models.Topic).filter(models.Topic.title == topic.title).first()
     if db_item is not None:
