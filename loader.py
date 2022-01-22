@@ -1,4 +1,3 @@
-from os import name
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy import Table
 # Trae el engine de conexión a la base de datos 
@@ -6,7 +5,7 @@ from database import engine
 from csv import reader
 
 # ----------------------------- CARGADOR TABLA HERRAMIENTAS (tools) ---------------------------------------------
-# Leer el archivo csv y convertirlo en una lista de listas
+# # Leer el archivo csv y convertirlo en una lista de listas
 # with open('./CSV_files/Tools.csv', 'r') as csv_file:
 #     csv_reader = reader(csv_file)
 #     list_of_tools = list(csv_reader)
@@ -49,18 +48,17 @@ with open('./CSV_files/Courses.csv', 'r') as csv_file:
 list_of_courses.sort(reverse=True)
 
 metadata = MetaData(engine)
-course_table = Table('courses', metadata, autoload=True)
+course_table = Table('course', metadata, autoload=True)
 ins = course_table.insert()
 
 for i in range(len(list_of_courses)):
     course=list_of_courses.pop()
     if(len(course)==4):
-        ins = ins.values(name=course[0],description=course[1],date=course[2],url_course=course[3])
+        ins = ins.values(title=course[0],description=course[1],date=course[2],link=course[3])
         conn = engine.connect()
         conn.execute(ins)
     else:
         print("El registro de Curso no tiene los campos necesarios, verifique el registro en el archivo .csv")
-
 # ----------------------------- CARGADOR TABLA TALLERES (workshops) ---------------------------------------------
 # with open('./CSV_files/Workshops.csv', 'r') as csv_file:
 #     csv_reader = reader(csv_file)
