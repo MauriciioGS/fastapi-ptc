@@ -245,7 +245,8 @@ def get_an_material(material_id:int):
 @app.get('/material/name/{material_name}', response_model=Material,
         status_code=status.HTTP_200_OK)
 def get_an_material(material_name:str):
-    material = db.query(models.Material).filter(models.Material.title.contains(material_name)).first()
+    search = "%{}%".format(material_name)
+    material = db.query(models.Material).filter(models.Material.title.like(search)).first()
     print(material)
     return material
 
