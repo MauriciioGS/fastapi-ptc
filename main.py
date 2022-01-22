@@ -92,7 +92,7 @@ db = SessionLocal()
 @app.get('/courses',response_model=List[Course],
         status_code=status.HTTP_200_OK)
 def get_all_courses():
-    courses = db.query(models.Curso).all()
+    courses = db.query(models.Course).all()
     return courses
 
 @app.get('/course/{course_id}', response_model=Course,

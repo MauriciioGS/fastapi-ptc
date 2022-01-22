@@ -67,16 +67,38 @@ for i in range(len(list_of_courses)):
 # list_of_workshops.sort(reverse=True)
 
 # metadata = MetaData(engine)
-# workshop_table = Table('workshops', metadata, autoload=True)
+# workshop_table = Table('taller', metadata, autoload=True)
 # ins = workshop_table.insert()
 
 # for i in range(len(list_of_workshops)):
 #     workshop=list_of_workshops.pop()
 
 #     if(len(workshop)==4):
-#         ins = ins.values(name=workshop[0],description=workshop[1],date=workshop[2],url_workshop=workshop[3])
+#         ins = ins.values(title=workshop[0],description=workshop[1],date=workshop[2],liga=workshop[3])
 #         conn = engine.connect()
 #         conn.execute(ins)
 #     else:
 #         print("El registro de Taller no tiene los campos necesarios, verifique el registro en el archivo .csv")
 
+# ----------------------------- CARGADOR TABLA MATERIALES (materials) ---------------------------------------------
+# with open('./CSV_files/Material.csv', 'r') as csv_file:
+#     csv_reader = reader(csv_file)
+#     list_of_material = list(csv_reader)
+
+# list_of_material.sort(reverse=True)
+
+# metadata = MetaData(engine)
+# material_table = Table('materials', metadata, autoload=True)
+# ins = material_table.insert()
+# print(material_table.columns)
+
+# for i in range(len(list_of_material)):
+#     material=list_of_material.pop()
+
+#     if(len(material)==2):
+#         print(material[0],material[1])
+#         ins = ins.values(title=material[0],url =material[1])
+#         conn = engine.connect()
+#         conn.execute(ins)
+#     else:
+#         print("El registro de Material no tiene los campos necesarios, verifique el registro en el archivo .csv")
