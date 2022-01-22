@@ -242,7 +242,7 @@ def get_an_material(material_id:int):
     material = db.query(models.Material).filter(models.Material.id == material_id).first()
     return material
 
-@app.get('/material/{material_name}', response_model=Material,
+@app.get('/material/name/{material_name}', response_model=Material,
         status_code=status.HTTP_200_OK)
 def get_an_material(material_name:str):
     material = db.query(models.Material).filter(models.Material.title == material_name).first()
