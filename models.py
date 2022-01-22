@@ -21,7 +21,7 @@ class Course(Base):
   link = Column(Text, nullable=False)
 
   def __repr__(self):
-    return f"<Curso title={self.title} description={self.description} date={self.date} link={self.link}>"
+    return f"<Course title={self.title} description={self.description} date={self.date} link={self.link}>"
 
 class Taller(Base):
   __tablename__='taller'
@@ -51,7 +51,7 @@ class Video(Base):
   code = Column(Text, nullable=False)
 
   def __repr__(self):
-    return f"<Material id_material={self.id_material} title={self.title} code={self.code} >"
+    return f"<Video id_material={self.id_material} title={self.title} code={self.code} >"
 
 class Handbook(Base):
   __tablename__='handbooks'
@@ -61,7 +61,7 @@ class Handbook(Base):
   url_handbook = Column(Text, nullable=False)
 
   def __repr__(self):
-    return f"<Material id_material={self.id_material} title={self.title} url_handbook={self.url_handbook}>"
+    return f"<Handbook id_material={self.id_material} title={self.title} url_handbook={self.url_handbook}>"
 
 class Topic(Base):
   __tablename__='topics'
@@ -71,4 +71,4 @@ class Topic(Base):
   url_notes = Column(Text, nullable=False)
 
   def __repr__(self):
-    return f"<Material id_material={self.id_material} title={self.title} url_notes={self.url_notes}>"
+    return f"<Topic id_material={self.id_material} title={self.title} url_notes={self.url_notes}>"
