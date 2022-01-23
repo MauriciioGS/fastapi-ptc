@@ -317,7 +317,7 @@ def get_an_video(video_id:int):
 
 @app.get('/videos/{material_id}', response_model=List[Video],
         status_code=status.HTTP_200_OK)
-def get_a_topic_for_id_material(material_id:int):
+def get_a_video_for_id_material(material_id:int):
     videos = db.query(models.Video).filter(models.Video.id_material == material_id).all()
     return videos
 
