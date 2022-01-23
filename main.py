@@ -309,12 +309,6 @@ def get_all_videos():
     videos = db.query(models.Video).all()
     return videos
 
-@app.get('/videos/materials_id',response_model=List[Video],
-        status_code=status.HTTP_200_OK)
-def get_all_id_materials_videos():
-    videos = db.query(models.Video).filter(models.Video.id_material).all()
-    return videos
-
 @app.get('/video/{video_id}', response_model=Video,
         status_code=status.HTTP_200_OK)
 def get_an_video(video_id:int):
