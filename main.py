@@ -6,6 +6,7 @@ import models
 
 app = FastAPI()
 
+# ------------------------------- Herramientas CRUD ------------------------------------------------------
 class Tool(BaseModel):
     id:int
     title:str
@@ -76,7 +77,7 @@ def delete_tool(tool_id:int):
 
     return tool_to_delete
 
-# Cursos CRUD -----------------------------------------------------------------------------------------
+# ------------------------------- Cursos CRUD ------------------------------------------------------
 class Course(BaseModel):
     id:int
     title:str
@@ -147,7 +148,7 @@ def delete_course(course_id:int):
 
     return course_to_delete
 
-# Talleres CRUD -----------------------------------------------------------------------------------------
+# ------------------------------------- Talleres CRUD -----------------------------------------
 class Taller(BaseModel):
     id:int
     title:str
@@ -219,7 +220,7 @@ def delete_taller(taller_id:int):
     return taller_to_delete
 
 
-# Material CRUD -----------------------------------------------------------------------------------------
+# -----------------------------------------Material CRUD ---------------------------------------------
 class Material(BaseModel):
     id:int
     title:str
@@ -291,7 +292,7 @@ def delete_material(material_id:int):
 
     return material_to_delete
 
-# Material Videos CRUD -----------------------------------------------------------------------------------------
+# ----------------------------------- Material Videos CRUD ------------------------------------------
 class Video(BaseModel):
     id:int
     id_material:int
@@ -358,7 +359,7 @@ def delete_video(video_id:int):
 
     return video_to_delete
 
-# Material Handbook CRUD -----------------------------------------------------------------------------------------
+# ---------------------------------------- Material Manuales CRUD ----------------------------------
 class Handbook(BaseModel):
     id:int
     id_material:int
@@ -425,7 +426,7 @@ def delete_handbook(handbook_id:int):
 
     return handbook_to_delete
 
-# Material Topic CRUD -----------------------------------------------------------------------------------------
+# -------------------------------------- Material Temas CRUD -----------------------------------
 class Topic(BaseModel):
     id:int
     id_material:int
@@ -491,3 +492,49 @@ def delete_topic(topic_id:int):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, details = "Resource Not Found")
 
     return topic_to_delete
+
+# -------------------------------------- Feedback CRUD ------------------------------------------
+class Feedbaack(BaseModel):
+    id:int
+    score:str
+    comments:str 
+    class Config:
+        orm_mode=True
+
+db = SessionLocal()
+
+@app.get('/feedback',response_model=List[Feedbaack],
+        status_code=status.HTTP_200_OK)
+def get_all_feedback():
+    feedback = db.query(models.Feedback).all()
+    return feedback
+
+@app.post('/feedback',response_model=Feedbaack,
+        status_code=status.HTTP_201_CREATED)
+def create_new_feedback(fb:Feedbaack):
+
+    db_item = db.query(models.Feedback).filter(models.Feedback.id == fb.id).first()
+    if db_item is not None:
+        raise HTTPException(status_code=400, details="FdBk already exists")
+
+    new_fb = models.Feedback(
+            score=fb.score,
+            comments=fb.comments
+            )
+
+    db.add(new_fb)
+    db.commit()
+
+    return new_fb
+
+@app.delete('/feedback/{feedback_id}', response_model=Feedbaack,
+        status_code=status.HTTP_200_OK)
+def delete_feedback(feedback_id:int):
+    fb_to_delete = db.query(models.Feedback).filter(models.Feedback.id == feedback_id).first()
+    db.delete(fb_to_delete)
+    db.commit()
+
+    if fb_to_delete is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, details = "Resource Not Found")
+
+    return fb_to_delete

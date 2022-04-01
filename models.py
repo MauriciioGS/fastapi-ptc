@@ -72,3 +72,13 @@ class Topic(Base):
 
   def __repr__(self):
     return f"<Topic id_material={self.id_material} title={self.title} url_notes={self.url_notes}>"
+
+# Feedback
+class Feedback(Base):
+  __tablename__='feedback'
+  id = Column(Integer, primary_key=True)
+  score = Column(Text, nullable=False)
+  comments = Column(Text, nullable=False)
+
+  def __repr__(self) -> str:
+      return f"Feedback score={self.score} comments={self.comments}>"
