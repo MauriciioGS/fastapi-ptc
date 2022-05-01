@@ -83,12 +83,3 @@ class Feedback(Base):
   def __repr__(self) -> str:
       return f"Feedback score={self.score} comments={self.comments}>"
 
-# Consultancies
-class Consultancies(Base):
-  __tablename__='consultancies'
-  id = Column(Integer, primary_key=True)
-  score = Column(Text, nullable=False)
-  comments = Column(Text, nullable=False)
-
-  def __repr__(self) -> str:
-      return f"Consultancies score={self.score} comments={self.comments}>"
