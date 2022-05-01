@@ -82,19 +82,3 @@ class Feedback(Base):
 
   def __repr__(self) -> str:
       return f"Feedback score={self.score} comments={self.comments}>"
-    
-# consultancies
-class Consultancies(Base):
-  __tablename__='consultancies'
-  url_consultancies = Column(Text,primary_key=True, nullable=False)
-
-  def __repr__(self) -> str:
-      return f"Url_consultancies={self.url_consultancies}>"
-    
-# announcement
-class Announcement(Base):
-  __tablename__='Announcement'
-  url_announcement = Column(Text,primary_key=True, nullable=False)
-
-  def __repr__(self) -> str:
-      return f"Url_announcement={self.url_announcement}>"
