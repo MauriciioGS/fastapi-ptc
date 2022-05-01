@@ -86,7 +86,7 @@ class Feedback(Base):
 # consultancies
 class Consultancies(Base):
   __tablename__='consultancies'
-  url_consultancies = Column(Text, nullable=False)
+  url_consultancies = Column(Text,primary_key=True, nullable=False)
 
   def __repr__(self) -> str:
       return f"Url_consultancies={self.url_consultancies}>"
@@ -94,7 +94,7 @@ class Consultancies(Base):
 # announcement
 class Announcement(Base):
   __tablename__='Announcement'
-  url_announcement = Column(Text, nullable=False)
+  url_announcement = Column(Text,primary_key=True, nullable=False)
 
   def __repr__(self) -> str:
       return f"Url_announcement={self.url_announcement}>"
