@@ -83,3 +83,10 @@ class Feedback(Base):
   def __repr__(self) -> str:
       return f"Feedback score={self.score} comments={self.comments}>"
 
+class Consultancies(Base):
+  __tablename__='consultancies'
+  id = Column(Integer, primary_key=True)
+  url = Column(Text, nullable=False)
+
+  def __repr__(self):
+    return f"<Consultancies id={self.id} url={self.url} >"

@@ -552,4 +552,18 @@ def delete_feedback(feedback_id:int):
 
     return fb_to_delete
 
+# -----------------------------------------Asesoarias CRUD ---------------------------------------------
+class Consultancies(BaseModel):
+    id:int
+    url:str
 
+    class Config:
+        orm_mode=True
+
+db = SessionLocal()
+
+@app.get('/consultancies',response_model=List[Consultancies],
+        status_code=status.HTTP_200_OK)
+def get_all_materials():
+    consultancies = db.query(models.Consultancies).all()
+    return consultancies
