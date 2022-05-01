@@ -89,4 +89,12 @@ class Consultancies(Base):
   url_consultancies = Column(Text, nullable=False)
 
   def __repr__(self) -> str:
-      return f"Consultancies id={self.id} url_consultancies={self.url_consultancies}>"
+      return f"Url_consultancies={self.url_consultancies}>"
+    
+# announcement
+class Announcement(Base):
+  __tablename__='Announcement'
+  url_announcement = Column(Text, nullable=False)
+
+  def __repr__(self) -> str:
+      return f"Url_announcement={self.url_announcement}>"
