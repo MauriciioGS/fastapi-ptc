@@ -261,7 +261,6 @@ def create_a_material(material:Material):
 
     new_material = models.Material(
             title=material.title,
-            description = material.description,
             url = material.url,
             )
 
