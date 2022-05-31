@@ -604,3 +604,57 @@ def delete_consultancies(consultancies_id:int):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, details = "Resource Not Found")
 
     return consultancies_to_delete
+
+# -------------------------------------- Announcement CRUD ------------------------------------------
+class Announcement(BaseModel):
+    id:int
+    url_announcement:str
+    class Config:
+        orm_mode=True
+
+db = SessionLocal()
+
+@app.get('/announcement',response_model=List[Announcement],
+        status_code=status.HTTP_200_OK)
+def get_all_announcement():
+    announcement = db.query(models.Announcement).all()
+    return announcement
+
+@app.post('/announcement',response_model=Announcement,
+        status_code=status.HTTP_201_CREATED)
+def create_new_announcement(announcement:Announcement):
+
+    db_item = db.query(models.Announcement).filter(models.Announcement.id == announcement.id).first()
+    if db_item is not None:
+        raise HTTPException(status_code=400, details="Announcement already exists")
+
+    new_Announcement = models.Announcement(
+            url_announcement=announcement.url_announcement
+            )
+
+    db.add(new_Announcement)
+    db.commit()
+
+    return new_Announcement
+
+@app.put('/announcement/{announcement_id}', response_model=Announcement,
+        status_code=status.HTTP_200_OK)
+def update_an_announcement(announcement_id:int,announcement:Announcement):
+    announcement_to_update = db.query(models.Announcement).filter(models.Announcement.id == announcement_id).first()
+    announcement_to_update.url_announcement = announcement.url_announcement
+
+    db.commit()
+
+    return announcement_to_update
+
+@app.delete('/announcement/{announcement_id}', response_model=Announcement,
+        status_code=status.HTTP_200_OK)
+def delete_announcement(announcement_id:int):
+    announcement_to_delete = db.query(models.Announcement).filter(models.Announcement.id == announcement_id).first()
+    db.delete(announcement_to_delete)
+    db.commit()
+
+    if announcement_to_delete is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, details = "Resource Not Found")
+
+    return announcement_to_delete
